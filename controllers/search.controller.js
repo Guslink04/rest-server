@@ -7,11 +7,11 @@ const getSearch = (req = request, res = response) => {
     axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
         .then(response => {
             res.status(200);
-            res.json(response.data.results)
+            res.send(response.data.results)
         })
         .catch(error => {
             res.status(404);
-            res.json({
+            res.send({
                 msg: `${error}`
             })
         });
