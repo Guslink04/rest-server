@@ -15,9 +15,7 @@ const getSearch = (req = request, res = response) => {
         })
         .catch(error => {
             res.status(404);
-            res.send([{
-                msg: `${error}`
-            }])
+            res.send([])
         });
 }
 
