@@ -6,8 +6,12 @@ const getSearch = (req = request, res = response) => {
     console.log("Info devuelta desde el controlador")
     axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
         .then(response => {
+            const cleanResults = response.data.results.map(result => {
+                const { id, title, price, currency_id, available_quantity, thumbnail, condition } = result
+                return { id, title, price, currency_id, available_quantity, thumbnail, condition }
+            })
             res.status(200);
-            res.send(response.data.results)
+            res.send(cleanResults);
         })
         .catch(error => {
             res.status(404);
